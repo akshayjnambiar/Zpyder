@@ -156,6 +156,12 @@ public class BitboardGeneration {
             
         }
         
+        
+        UserInterface.WP=P; UserInterface.WN=N; UserInterface.WB=B;
+        UserInterface.WR=R; UserInterface.WQ=Q; UserInterface.WK=K;
+        UserInterface.BP=p; UserInterface.BN=n; UserInterface.BB=b;
+        UserInterface.BR=r; UserInterface.BQ=q; UserInterface.BK=k;
+        
         if(debug) {
                 printChessBoard();
             }

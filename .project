@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
 	<name>Zpyder</name>
-	<comment>Chess Engine</comment>
+	<comment></comment>
 	<projects>
 	</projects>
 	<buildSpec>
@@ -14,4 +14,10 @@
 	<natures>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
+	<variableList>
+		<variable>
+			<name>GIT_LOC</name>
+			<value>file:/C:/Users/akshayjnambiar/Documents/GitHub/Zpyder</value>
+		</variable>
+	</variableList>
 </projectDescription>
