@@ -33,19 +33,90 @@ public class BitboardGeneration {
      */
     public static void initializeStandardChessBoard() {
         
-        // Initialize the bitboards to O 
+        // Initialize the bitboards to 0 
         K = Q = B = N = R = P = k = q = b = n = r = p = 0L;
         
         //  String to represent the standard chess board
-        String zeroes="";
-        for(int i=0;i<32;i++) zeroes+="0";
+        String spaces="";
+        for(int i=0;i<32;i++) spaces+=" ";
         
-        String chessBoard = "rnbqkbnrpppppppp" + zeroes + "PPPPPPPPRNBQKBNR";
+        String chessBoard = "rnbqkbnrpppppppp" + spaces + "PPPPPPPPRNBQKBNR";
 
         //  Convert to bit boards 
         convertToBitboards(chessBoard);
     }
     
+    /**
+     *  This function is the first function to be called and it initializes the chess board 
+     *  to the chess 960 arrangement.  
+     * 
+     *  @param void
+     *  @return void
+     */
+    public static void initializeChess960Board() {
+        
+        // Initialize the bitboards to 0 
+        K = Q = B = N = R = P = k = q = b = n = r = p = 0L;
+        
+        //  String to represent the standard chess board
+        String chessBoard="";
+        for(int i=0;i<8;i++) chessBoard+=" ";
+        chessBoard+="pppppppp";
+        for(int i=0;i<32;i++) chessBoard+=" ";
+        chessBoard+="PPPPPPPP";
+        for(int i=0;i<8;i++) chessBoard+=" ";
+        
+        // To change character ny charachter in the next steps
+        char[] tempchessBoard = chessBoard.toCharArray();
+        
+        List<Integer> positions = new ArrayList<Integer>();
+        for(int i=0;i<8;i++) positions.add(i);
+        
+        // Step 1: Place a Bishop on the black square
+        int randBlackBishop = (int)(Math.random()*4)*2+1;
+        tempchessBoard[positions.get(randBlackBishop)]='b';
+        tempchessBoard[56+positions.get(randBlackBishop)]='B';
+        positions.remove(randBlackBishop);
+        
+        // Step 2: Place a Bishop on the white square
+        int randWhiteBishop = (int)(Math.random()*4)*2;
+        tempchessBoard[positions.get(randWhiteBishop)]='b';
+        tempchessBoard[56+positions.get(randWhiteBishop)]='B';
+        positions.remove(randWhiteBishop);
+        
+        // Step 3: Place a Queen on an empty square
+        int randQueen = (int)(Math.random()*6);
+        tempchessBoard[positions.get(randQueen)]='q';
+        tempchessBoard[56+positions.get(randQueen)]='Q';
+        positions.remove(randQueen);
+        
+        // Step 4: Place a Knight on an empty square
+        int randKnight1 = (int)(Math.random()*5);
+        tempchessBoard[positions.get(randKnight1)]='n';
+        tempchessBoard[56+positions.get(randKnight1)]='N';
+        positions.remove(randKnight1);
+        
+        // Step 5: Place the next Knight on an empty square
+        int randKnight2 = (int)(Math.random()*4);
+        tempchessBoard[positions.get(randKnight2)]='n';
+        tempchessBoard[56+positions.get(randKnight2)]='N';
+        positions.remove(randKnight2);
+        
+        // Step 6: Place the rest in the order Rook King Rook
+        tempchessBoard[positions.get(0)] = 'r';
+        tempchessBoard[56+positions.get(0)] = 'R';
+        tempchessBoard[positions.get(1)] = 'k';
+        tempchessBoard[56+positions.get(1)] = 'K';
+        tempchessBoard[positions.get(2)] = 'r';
+        tempchessBoard[56+positions.get(2)] = 'R';
+        
+        // Convert tempchessBoard to chessBoard
+        chessBoard = String.valueOf(tempchessBoard);
+        
+        //  Convert to bit boards 
+        convertToBitboards(chessBoard);
+    }
+
     /**
      * This function is used to initialize the bitboard variables according to the 
      * arrangement in the chessBoard string. This will be a 64 bit binary. 
