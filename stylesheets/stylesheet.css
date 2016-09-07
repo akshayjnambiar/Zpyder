@@ -19,8 +19,8 @@ a {
   display: inline-block;
   margin-bottom: 1rem;
   color: rgba(255, 255, 255, 0.7);
-  background-color: rgba(255, 255, 255, 0.08);
-  border-color: rgba(255, 255, 255, 0.2);
+  background-color: rgba(0, 0, 0, 0.7);
+  border-color: rgba(0, 0, 0);
   border-style: solid;
   border-width: 1px;
   border-radius: 0.3rem;
@@ -57,7 +57,10 @@ a {
   color: #fff;
   text-align: center;
   background-color: #159957;
-  background-image: "../images/chess.jpg"; }
+  background-image: url("../images/chess.jpg");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+ }
 
 @media screen and (min-width: 64em) {
   .page-header {
